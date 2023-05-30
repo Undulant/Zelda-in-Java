@@ -43,7 +43,7 @@ public class PanelJuego extends JPanel implements Runnable {
 	//ESTADO DEL JUEGO
 	public int estadoJuego;
 	public final int estadoMenu = 0;
-	public final int estadoJugar = 1;
+	public final int estadoJugar = 0;
 
 	
 	//RESPAWN DEL JUGADOR

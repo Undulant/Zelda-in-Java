@@ -33,18 +33,10 @@ public class PanelJuego extends JPanel implements Runnable {
 	int FPS = 60;
 	
 	AdministradoTile tileM = new AdministradoTile(this);
-	ControlTeclas teclas = new ControlTeclas(this);
+	ControlTeclas teclas = new ControlTeclas();
 	Thread hiloJuego;
 	public AdministradorColision aColision = new AdministradorColision(this);
 	public Jugador jugador = new Jugador(this,teclas);
-	public Ui ui = new Ui(this);
-
-	
-	//ESTADO DEL JUEGO
-	public int estadoJuego;
-	public final int estadoMenu = 0;
-	public final int estadoJugar = 1;
-
 	
 	//RESPAWN DEL JUGADOR
 	/*int jugadorX = 100;
@@ -59,10 +51,6 @@ public class PanelJuego extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
 		this.setFocusable(true);
-	}
-	
-	public void setupJuego() {
-		estadoJuego = estadoMenu;
 	}
 	
 	public void iniciarHiloJuego() {
@@ -122,22 +110,11 @@ public class PanelJuego extends JPanel implements Runnable {
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
-		//MENU
-		if(estadoJuego == estadoMenu) {
-			
-			ui.dibujar(g2);
-			ui.dibujar2(g2);
-			
-		}else {
-			
-			//PRIMERO SE VA DIBUJAR LO QUE ESTE ARRIBA
-			tileM.dibuja(g2);
-			
-			jugador.dibujar(g2);
-			
-		}
+		//PRIMERO SE VA DIBUJAR LO QUE ESTE ARRIBA
+		tileM.dibuja(g2);
 		
-	
+		jugador.dibujar(g2);
+		
 		g2.dispose();
 	}
 	

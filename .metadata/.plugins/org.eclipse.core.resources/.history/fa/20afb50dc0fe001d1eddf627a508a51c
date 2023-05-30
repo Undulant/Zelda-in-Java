@@ -33,7 +33,7 @@ public class PanelJuego extends JPanel implements Runnable {
 	int FPS = 60;
 	
 	AdministradoTile tileM = new AdministradoTile(this);
-	ControlTeclas teclas = new ControlTeclas(this);
+	ControlTeclas teclas = new ControlTeclas();
 	Thread hiloJuego;
 	public AdministradorColision aColision = new AdministradorColision(this);
 	public Jugador jugador = new Jugador(this,teclas);
@@ -43,7 +43,7 @@ public class PanelJuego extends JPanel implements Runnable {
 	//ESTADO DEL JUEGO
 	public int estadoJuego;
 	public final int estadoMenu = 0;
-	public final int estadoJugar = 1;
+	public final int estadoJugar = 0;
 
 	
 	//RESPAWN DEL JUGADOR
@@ -126,7 +126,6 @@ public class PanelJuego extends JPanel implements Runnable {
 		if(estadoJuego == estadoMenu) {
 			
 			ui.dibujar(g2);
-			ui.dibujar2(g2);
 			
 		}else {
 			
