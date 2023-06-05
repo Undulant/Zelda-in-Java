@@ -78,6 +78,27 @@ public class AdministradoTile {
 			
 			tile[12] = new Tile();
 			tile[12].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 3.png"));
+			
+			tile[13] = new Tile();
+			tile[13].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Left_Abajo.png"));
+			tile[13].colision = true;
+			
+			tile[14] = new Tile();
+			tile[14].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Right_Abajo.png"));
+			tile[14].colision = true;
+			
+			tile[15] = new Tile();
+			tile[15].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Left_Arriba.png"));
+			tile[15].colision = true;
+			
+			tile[16] = new Tile();
+			tile[16].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Right_Arriba.png"));
+			tile[16].colision = true;
+			
+			tile[17] = new Tile();
+			tile[17].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbusto.png"));
+			
+			
 		}
 		catch(IOException e) {
 			e.printStackTrace();
@@ -139,7 +160,15 @@ public class AdministradoTile {
 			int camaraX = mundoX - pj.jugador.mundoX + pj.jugador.camaraX;
 			int camaraY = mundoY - pj.jugador.mundoY + pj.jugador.camaraY;
 			
+			if(mundoX + pj.tamPantalla > pj.jugador.mundoX - pj.jugador.camaraX &&
+			   mundoX - pj.tamPantalla < pj.jugador.mundoX + pj.jugador.camaraX &&
+			   mundoY + pj.tamPantalla > pj.jugador.mundoY - pj.jugador.camaraY &&
+			   mundoY - pj.tamPantalla < pj.jugador.mundoY + pj.jugador.camaraY) {
+			
 			g2.drawImage(tile[numTile].imagen, camaraX, camaraY, pj.tamPantalla, pj.tamPantalla, null);
+			
+			}
+			
 			colMundo++;
 			
 			if(colMundo == pj.maxColMundo) {

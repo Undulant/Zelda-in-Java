@@ -1,0 +1,23 @@
+package Objeto;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class OBJ_Cofre extends SuperObjeto{
+	
+	public OBJ_Cofre() {
+		
+		nombre = "Llave";
+		try {
+			
+			imagen = ImageIO.read(getClass().getResourceAsStream("/Objetos/Llave.png"));
+			
+		}catch(IOException e) {
+			
+			e.printStackTrace();
+			
+		}
+	}
+
+}

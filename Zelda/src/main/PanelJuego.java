@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Entidades.Jugador;
+import Objeto.SuperObjeto;
 import tiles.AdministradoTile;
 
 public class PanelJuego extends JPanel implements Runnable {
@@ -38,7 +39,8 @@ public class PanelJuego extends JPanel implements Runnable {
 	public AdministradorColision aColision = new AdministradorColision(this);
 	public Jugador jugador = new Jugador(this,teclas);
 	public Ui ui = new Ui(this);
-
+	public SuperObjeto obj[] = new SuperObjeto[10];
+	public AssetSetter aSetter = new AssetSetter(this);
 	
 	//ESTADO DEL JUEGO
 	public int estadoJuego;
@@ -59,6 +61,11 @@ public class PanelJuego extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
 		this.setFocusable(true);
+	}
+	
+	public void setupGame() {
+		
+		aSetter.setObjeto();
 	}
 	
 	public void setupJuego() {
@@ -132,6 +139,12 @@ public class PanelJuego extends JPanel implements Runnable {
 			
 			//PRIMERO SE VA DIBUJAR LO QUE ESTE ARRIBA
 			tileM.dibuja(g2);
+			
+			for(int i = 0; i < obj.length; i++) {
+				if(obj[i] != null) {
+					obj[i].dibujar(g2, this);
+				}
+			}
 			
 			jugador.dibujar(g2);
 			

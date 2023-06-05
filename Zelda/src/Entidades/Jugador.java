@@ -112,7 +112,7 @@ public class Jugador extends Entidad{
 			}
 			
 			contadorSprite ++;
-			if(contadorSprite > 4) {
+			if(contadorSprite > 12) {
 				if(numSprite == 0) {
 					numSprite = 1;
 				}
