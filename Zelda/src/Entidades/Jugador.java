@@ -18,6 +18,8 @@ public class Jugador extends Entidad{
 	public final int camaraX;
 	public final int camaraY;
 	
+	int tenerLlave = 0;
+	
 	public Jugador(PanelJuego pj, ControlTeclas teclas) {
 		
 		this.pj = pj;
@@ -29,6 +31,8 @@ public class Jugador extends Entidad{
 		hitBox = new Rectangle();
 		hitBox.x = 8;
 		hitBox.y = 16;
+		hitBoxDefaultX = hitBox.x;
+		hitBoxDefaultY = hitBox.y;
 		hitBox.width = 32;
 		hitBox.height = 32;
 		
@@ -92,6 +96,10 @@ public class Jugador extends Entidad{
 			colisionOn = false;
 			pj.aColision.revisarTile(this);
 			
+			//REVISAR LA COLISION CON EL OBJETO
+			int objIndex = pj.aColision.revisarObjeto(this, true);
+			recogerObjeto(objIndex);
+			
 			//SI COLISION ES FALSO, EL JUGADOR PUED MOVERSE
 			if(colisionOn == false) {
 				
@@ -128,6 +136,33 @@ public class Jugador extends Entidad{
 		else {
 			numSprite = 1;
 		}
+	}
+	
+	public void recogerObjeto(int i) {
+		
+		if(i != 999) {
+			
+			String nombreObjeto = pj.obj[i].nombre;
+			
+			switch(nombreObjeto) {
+			case "Llave":
+				pj.playSE(2);
+				tenerLlave++;
+				pj.obj[i] = null;
+				break;
+			case "Cofre":
+				if(tenerLlave > 0) {
+					pj.obj[i] = null;
+					tenerLlave--;
+				}
+				break;
+			case "Bota":
+				velocidad += 1;
+				pj.obj[i] = null;
+				break;
+			}
+		}
+		
 	}
 	
 	//DIBUJO PERSONAJE

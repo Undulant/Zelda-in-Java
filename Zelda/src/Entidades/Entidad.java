@@ -16,6 +16,7 @@ public class Entidad {
 	public int numSprite = 1;
 	
 	public Rectangle hitBox;
+	public int hitBoxDefaultX, hitBoxDefaultY;
 	public boolean colisionOn = false;
 
 }

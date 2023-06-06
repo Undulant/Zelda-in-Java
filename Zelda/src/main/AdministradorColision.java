@@ -59,4 +59,78 @@ public class AdministradorColision {
 			break;
 		}
 	}
+	
+	public int revisarObjeto(Entidad entidad, boolean jugador) {
+		
+		int index = 999;
+		
+		for(int i = 0; i < pj.obj.length; i++) {
+			
+			if(pj.obj[i] != null) {
+				
+				//OBTIENE LA POSICION DE LA HIT BOX DE LA ENTIDAD
+				entidad.hitBox.x = entidad.mundoX + entidad.hitBox.x;
+				entidad.hitBox.y = entidad.mundoY + entidad.hitBox.y;
+				
+				//OBTIENE LA POSICION DE LA HIT BOX DEL OBJETO
+				pj.obj[i].hitBox.x = pj.obj[i].mundoX + pj.obj[i].hitBox.x;
+				pj.obj[i].hitBox.y = pj.obj[i].mundoY + pj.obj[i].hitBox.y;
+				
+				switch(entidad.direccion) {
+				case "arriba":
+					entidad.hitBox.y -= entidad.velocidad;
+					if(entidad.hitBox.intersects(pj.obj[i].hitBox)) {
+						if(pj.obj[i].colision == true) {
+							entidad.colisionOn = true;
+						}
+						if(jugador == true) {
+							index = i;
+						}
+					}
+					break;
+				case "abajo":
+					entidad.hitBox.y += entidad.velocidad;
+					if(entidad.hitBox.intersects(pj.obj[i].hitBox)) {
+						if(pj.obj[i].colision == true) {
+							entidad.colisionOn = true;
+						}
+						if(jugador == true) {
+							index = i;
+						}
+					}
+					break;
+				case "izquierda":
+					entidad.hitBox.x -= entidad.velocidad;
+					if(entidad.hitBox.intersects(pj.obj[i].hitBox)) {
+						if(pj.obj[i].colision == true) {
+							entidad.colisionOn = true;
+						}
+						if(jugador == true) {
+							index = i;
+						}
+					}
+					break;
+				case "derecha":
+					entidad.hitBox.x += entidad.velocidad;
+					if(entidad.hitBox.intersects(pj.obj[i].hitBox)) {
+						if(pj.obj[i].colision == true) {
+							entidad.colisionOn = true;
+						}
+						if(jugador == true) {
+							index = i;
+						}
+					}
+					break;
+				}
+				entidad.hitBox.x = entidad.hitBoxDefaultX;
+				entidad.hitBox.y = entidad.hitBoxDefaultY;
+				pj.obj[i].hitBox.x = pj.obj[i].hitBoxDefaultX;
+				pj.obj[i].hitBox.y = pj.obj[i].hitBoxDefaultY;
+
+			}
+		}
+		
+		return index;
+		
+	}
 }

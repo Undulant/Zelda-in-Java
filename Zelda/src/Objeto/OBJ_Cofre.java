@@ -18,6 +18,7 @@ public class OBJ_Cofre extends SuperObjeto{
 			e.printStackTrace();
 			
 		}
+		colision = true;
 	}
 
 }

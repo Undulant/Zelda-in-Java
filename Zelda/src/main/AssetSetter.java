@@ -1,5 +1,6 @@
 package main;
 
+import Objeto.OBJ_Bota;
 import Objeto.OBJ_Cofre;
 import Objeto.OBJ_Llave;
 
@@ -24,5 +25,9 @@ public class AssetSetter {
 		pj.obj[2] = new OBJ_Cofre();
 		pj.obj[2].mundoX = 5 * pj.tamPantalla;
 		pj.obj[2].mundoY = 8 * pj.tamPantalla;
+		
+		pj.obj[3] = new OBJ_Bota();
+		pj.obj[3].mundoX = 8 * pj.tamPantalla;
+		pj.obj[3].mundoY = 8 * pj.tamPantalla;
 	}
 }

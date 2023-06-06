@@ -26,8 +26,7 @@ public class PanelJuego extends JPanel implements Runnable {
 	//CONFIGURACIONES DEL MUNDO
 	public final int maxColMundo = 32;
 	public final int maxFilMundo = 24;
-	public final int anchoMundo = tamPantalla * maxColMundo;
-	public final int alturaMundo = tamPantalla * maxFilMundo;
+
 
 	
 	//FPSSSSSSSSSSSSSSSSSSSSSSSSS
@@ -35,12 +34,15 @@ public class PanelJuego extends JPanel implements Runnable {
 	
 	AdministradoTile tileM = new AdministradoTile(this);
 	ControlTeclas teclas = new ControlTeclas(this);
-	Thread hiloJuego;
+	Sonido sonido = new Sonido();
 	public AdministradorColision aColision = new AdministradorColision(this);
-	public Jugador jugador = new Jugador(this,teclas);
 	public Ui ui = new Ui(this);
-	public SuperObjeto obj[] = new SuperObjeto[10];
 	public AssetSetter aSetter = new AssetSetter(this);
+	Thread hiloJuego;
+
+	
+	public Jugador jugador = new Jugador(this,teclas);
+	public SuperObjeto obj[] = new SuperObjeto[10];
 	
 	//ESTADO DEL JUEGO
 	public int estadoJuego;
@@ -66,6 +68,9 @@ public class PanelJuego extends JPanel implements Runnable {
 	public void setupGame() {
 		
 		aSetter.setObjeto();
+		
+		playMusic(0);
+
 	}
 	
 	public void setupJuego() {
@@ -154,6 +159,22 @@ public class PanelJuego extends JPanel implements Runnable {
 		g2.dispose();
 	}
 	
+	public void playMusic(int i) {
+		
+		sonido.setFile(i);
+		sonido.play();
+		sonido.loop();
+	}
 	
+	public void stopMusic() {
+		
+		sonido.stop();
+	}
+	
+	public void playSE(int i) {
+		
+		sonido.setFile(i);
+		sonido.play();
+	}
 	
 }
