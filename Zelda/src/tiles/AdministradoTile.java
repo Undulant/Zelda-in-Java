@@ -97,7 +97,21 @@ public class AdministradoTile {
 			
 			tile[17] = new Tile();
 			tile[17].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbusto.png"));
+			tile[17].colision = true;
 			
+			tile[18] = new Tile();
+			tile[18].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Abajo.png"));
+			tile[18].colision = true;
+			
+			tile[19] = new Tile();
+			tile[19].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Arriba.png"));
+			tile[19].colision = true;
+			
+			tile[20] = new Tile();
+			tile[20].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 8.png"));
+			
+			tile[21] = new Tile();
+			tile[21].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 9.png"));
 			
 		}
 		catch(IOException e) {
