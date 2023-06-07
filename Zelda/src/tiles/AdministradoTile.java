@@ -11,7 +11,8 @@ import javax.imageio.ImageIO;
 import main.PanelJuego;
 
 public class AdministradoTile {
-	
+	int juego;
+	String mensajes;
 	PanelJuego pj;
 	public Tile[] tile;
 	public int numTileMap[][];
