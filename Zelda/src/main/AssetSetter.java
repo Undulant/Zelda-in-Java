@@ -14,6 +14,7 @@ public class AssetSetter {
 	
 	public void setObjeto() {
 		
+		
 		pj.obj[0] = new OBJ_Llave();
 		pj.obj[0].mundoX = 4 * pj.tamPantalla;
 		pj.obj[0].mundoY = 4 * pj.tamPantalla;

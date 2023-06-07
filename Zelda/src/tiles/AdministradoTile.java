@@ -11,20 +11,24 @@ import javax.imageio.ImageIO;
 import main.PanelJuego;
 
 public class AdministradoTile {
-	
+	int juego;
+	String mensajes;
 	PanelJuego pj;
 	public Tile[] tile;
-	public int numTileMap[][];
+	public int numTileMap[][][]; 
 	
 	public AdministradoTile(PanelJuego pj) {
 		
 		this.pj = pj;
 		
 		tile = new Tile[25];
-		numTileMap = new int[pj.maxColMundo][pj.maxFilMundo];
+		numTileMap = new int[pj.maxMap][pj.maxColMundo][pj.maxFilMundo];
 		
 		getImagenTile();
-		cargaMapa("/maps/Prueba_Mundo.txt");
+		cargaMapa("/maps/Prueba_Mundo.txt", 0);
+		cargaMapa("/maps/Mapa_Camino.txt", 1);
+		cargaMapa("/maps/Mapa_Bosque.txt", 2);
+		cargaMapa("/maps/Mapa_Boss.txt", 3);
 	}
 	
 	public void getImagenTile() {
@@ -97,7 +101,21 @@ public class AdministradoTile {
 			
 			tile[17] = new Tile();
 			tile[17].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbusto.png"));
+			tile[17].colision = true;
 			
+			tile[18] = new Tile();
+			tile[18].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Abajo.png"));
+			tile[18].colision = true;
+			
+			tile[19] = new Tile();
+			tile[19].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Arriba.png"));
+			tile[19].colision = true;
+			
+			tile[20] = new Tile();
+			tile[20].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 8.png"));
+			
+			tile[21] = new Tile();
+			tile[21].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 9.png"));
 			
 		}
 		catch(IOException e) {
@@ -105,13 +123,13 @@ public class AdministradoTile {
 		}
 	}
 	
-	public void cargaMapa(String rutaArchivo) {
+	public void cargaMapa(String rutaArchivo, int map) {
 		
 		try {
 			//EXPORTA EL MAPA
-			InputStream map1 = getClass().getResourceAsStream(rutaArchivo);
+			InputStream is = getClass().getResourceAsStream(rutaArchivo);
 			//LEE EL MAPA
-			BufferedReader br = new BufferedReader(new InputStreamReader(map1));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			
 			int col = 0;
 			int fil = 0;
@@ -126,7 +144,7 @@ public class AdministradoTile {
 					
 					int num = Integer.parseInt(numeros[col]);
 					
-					numTileMap[col][fil] = num;
+					numTileMap[map][col][fil] = num;
 					col++;
 				}
 				if(col == pj.maxColMundo) {
@@ -153,7 +171,7 @@ public class AdministradoTile {
 
 		while(colMundo < pj.maxColMundo && filMundo < pj.maxFilMundo) {
 			
-			int numTile = numTileMap[colMundo][filMundo];
+			int numTile = numTileMap[pj.mapaActual][colMundo][filMundo];
 			
 			int mundoX = colMundo * pj.tamPantalla;
 			int mundoY = filMundo * pj.tamPantalla;

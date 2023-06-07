@@ -14,7 +14,6 @@
     <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
     <fullyQualifiedTypeName name="main.PanelJuego"/>
     <fullyQualifiedTypeName name="Objeto.OBJ_Cofre"/>
-    <fullyQualifiedTypeName name="java.awt.Rectangle"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="Objeto.OBJ_Bota"/>
     <fullyQualifiedTypeName name="javax.sound.sampled.Clip"/>
@@ -22,4 +21,6 @@
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="javax.sound.sampled.AudioSystem"/>
     <fullyQualifiedTypeName name="javax.sound.sampled.AudioInputStream"/>
+    <fullyQualifiedTypeName name="java.awt.Rectangle"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>
