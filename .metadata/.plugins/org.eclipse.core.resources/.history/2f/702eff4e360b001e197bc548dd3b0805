@@ -1,0 +1,30 @@
+package Objeto;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.PanelJuego;
+
+public class OBJ_Corazon extends SuperObjeto {
+	
+	PanelJuego pj;
+	
+	public OBJ_Corazon(PanelJuego pj) {
+		
+		this.pj = pj;
+		
+		nombre = "Corazon";
+		try {
+			
+			imagen = ImageIO.read(getClass().getResourceAsStream("/Objetos/Llave.png"));
+			uTool.scaleImage(imagen, pj.tamPantalla, pj.tamPantalla);
+			
+		}catch(IOException e) {
+			
+			e.printStackTrace();
+			
+		}
+	}
+
+}

@@ -18,5 +18,8 @@ public class Entidad {
 	public Rectangle hitBox;
 	public int hitBoxDefaultX, hitBoxDefaultY;
 	public boolean colisionOn = false;
+	
+	public int vidaMax;
+	public int vida;
 
 }

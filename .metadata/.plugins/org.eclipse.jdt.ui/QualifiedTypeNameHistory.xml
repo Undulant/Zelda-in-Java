@@ -12,7 +12,6 @@
     <fullyQualifiedTypeName name="Objeto.SuperObjeto"/>
     <fullyQualifiedTypeName name="Objeto.OBJ_Llave"/>
     <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
-    <fullyQualifiedTypeName name="main.PanelJuego"/>
     <fullyQualifiedTypeName name="Objeto.OBJ_Cofre"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="Objeto.OBJ_Bota"/>
@@ -23,4 +22,5 @@
     <fullyQualifiedTypeName name="javax.sound.sampled.AudioInputStream"/>
     <fullyQualifiedTypeName name="java.awt.Rectangle"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="main.PanelJuego"/>
 </qualifiedTypeNameHistroy>

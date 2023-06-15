@@ -65,6 +65,14 @@ public class ControlTeclas implements KeyListener{
 		if(controles == KeyEvent.VK_D) {
 			rightPresiono = true;
 		}
+		if(controles == KeyEvent.VK_P) {
+			if(pj.estadoJuego == pj.estadoJugar) {
+				pj.estadoJuego = pj.estadoPausa;
+			}
+			else if(pj.estadoJuego == pj.estadoPausa) {
+				pj.estadoJuego = pj.estadoJugar;
+			}
+		}
 	}
 
 	@Override

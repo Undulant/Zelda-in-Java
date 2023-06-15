@@ -26,6 +26,8 @@ public class PanelJuego extends JPanel implements Runnable {
 	//CONFIGURACIONES DEL MUNDO
 	public final int maxColMundo = 32;
 	public final int maxFilMundo = 24;
+	public final int anchoMundo = tamPantalla * maxColMundo;
+	public final int alturaMundo = tamPantalla * maxFilMundo;
 	public final int maxMap = 10;
 	public int mapaActual = 0;
 
@@ -51,7 +53,7 @@ public class PanelJuego extends JPanel implements Runnable {
 	public int estadoJuego;
 	public final int estadoMenu = 0;
 	public final int estadoJugar = 1;
-
+	public final int estadoPausa = 2;
 	
 	//RESPAWN DEL JUGADOR
 	/*int jugadorX = 100;
@@ -73,7 +75,7 @@ public class PanelJuego extends JPanel implements Runnable {
 		aSetter.setObjeto();
 		
 		playMusic(0);
-
+		
 	}
 	
 	public void setupJuego() {
@@ -128,7 +130,13 @@ public class PanelJuego extends JPanel implements Runnable {
 	//MOVIMIENTO DEL JUGADOR
 	public void actualizar() {
 		
-		jugador.actualizar();
+		if(estadoJuego == estadoJugar) {
+			jugador.actualizar();
+
+		}
+		if(estadoJuego == estadoPausa) {
+			//NADA DE NADA
+		}
 	}
 	
 	public void paintComponent(Graphics g){
@@ -136,6 +144,7 @@ public class PanelJuego extends JPanel implements Runnable {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
+				
 		
 		//MENU
 		if(estadoJuego == estadoMenu) {
@@ -157,9 +166,11 @@ public class PanelJuego extends JPanel implements Runnable {
 			stopMusic();
 			jugador.dibujar(g2);
 			
+			ui.dibujar(g2);
+			
 		}
 		
-	
+		
 		g2.dispose();
 	}
 	
