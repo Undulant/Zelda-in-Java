@@ -30,17 +30,21 @@ public class ControlTeclas implements KeyListener{
 				if(pj.ui.flechaSeleccion < 0) {
 					pj.ui.flechaSeleccion = 2;
 				}
+				pj.playSE(3);
 			}
 			if(controles == KeyEvent.VK_S || controles == KeyEvent.VK_DOWN) {
 				pj.ui.flechaSeleccion++;
 				if(pj.ui.flechaSeleccion > 2) {
 					pj.ui.flechaSeleccion = 0;
 				}
+				pj.playSE(3);
 			}
 			if(controles == KeyEvent.VK_ENTER) {
 				if(pj.ui.flechaSeleccion == 0) {
 					pj.estadoJuego = pj.estadoJugar;
 				}
+				pj.playSE(3);
+
 				if(pj.ui.flechaSeleccion == 1) {
 					//AGREGAR MAS TARDE
 				}
@@ -60,6 +64,14 @@ public class ControlTeclas implements KeyListener{
 		}
 		if(controles == KeyEvent.VK_D) {
 			rightPresiono = true;
+		}
+		if(controles == KeyEvent.VK_P) {
+			if(pj.estadoJuego == pj.estadoJugar) {
+				pj.estadoJuego = pj.estadoPausa;
+			}
+			else if(pj.estadoJuego == pj.estadoPausa) {
+				pj.estadoJuego = pj.estadoJugar;
+			}
 		}
 	}
 

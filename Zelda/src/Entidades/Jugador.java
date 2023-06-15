@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import main.ControlTeclas;
 import main.PanelJuego;
+import main.UtilityTool;
 
 public class Jugador extends Entidad{
 	
@@ -43,33 +44,49 @@ public class Jugador extends Entidad{
 	public void setValoresDeterminados() {
 		
 		//RESPAWN JUGADOR
-		mundoX = pj.tamPantalla * 8;
-		mundoY = pj.tamPantalla * 6;
+		mundoX = pj.tamPantalla * 15;
+		mundoY = pj.tamPantalla * 9;
 		velocidad = 4;
 		direccion = "abajo";
+		
+		vidaMax = 7;
+		vida = vidaMax;
 	}
 	//DESCARGA DE IMAGENES
 	public void getImagenJugador() {
 		
+		abajo0 = setup("Furro_camina_abajo_0");
+		abajo1 = setup("Furro_camina_abajo_1");
+		abajo2 = setup("Furro_camina_abajo_2");
+		arriba0 = setup("Furro_camina_arriba_0");
+		arriba1 = setup("Furro_camina_arriba_1");
+		arriba2 = setup("Furro_camina_arriba_2");
+		derecha0 = setup("Furro_camina_derecha_0");
+		derecha1 = setup("Furro_camina_derecha_1");
+		derecha2 = setup("Furro_camina_derecha_2");
+		izquierda0 = setup("Furro_camina_izquierda_0");
+		izquierda1 = setup("Furro_camina_izquierda_1");
+		izquierda2 = setup("Furro_camina_izquierda_2");
+		
+	}
+	
+	public BufferedImage setup(String imagenName) {
+		
+		UtilityTool uTool = new UtilityTool();
+		BufferedImage imagen = null;
+		
 		try {
 			
-			abajo0 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_abajo_0.png"));
-			abajo1 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_abajo_1.png"));
-			abajo2 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_abajo_2.png"));
-			arriba0 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_arriba_0.png"));
-			arriba1 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_arriba_1.png"));
-			arriba2 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_arriba_2.png"));
-			derecha0 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_derecha_0.png"));
-			derecha1 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_derecha_1.png"));
-			derecha2 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_derecha_2.png"));
-			izquierda0 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_izquierda_0.png"));
-			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_izquierda_1.png"));
-			izquierda2 = ImageIO.read(getClass().getResourceAsStream("/jugador/Furro_camina_izquierda_2.png"));
+			imagen = ImageIO.read(getClass().getResourceAsStream("/jugador/"+ imagenName +".png"));
+			imagen = uTool.scaleImage(imagen, pj.tamPantalla, pj.tamPantalla);
 
-		}
-		catch(IOException e) {
+			
+		}catch(IOException e) {
+			
 			e.printStackTrace();
 		}
+		
+		return imagen;
 	}
 	
 	//CONTROL DE MOVIEMIENTO
@@ -99,6 +116,9 @@ public class Jugador extends Entidad{
 			//REVISAR LA COLISION CON EL OBJETO
 			int objIndex = pj.aColision.revisarObjeto(this, true);
 			recogerObjeto(objIndex);
+			
+			//REVISAR LOS EVENTOS
+			pj.cEvento.revisarEvento();
 			
 			//SI COLISION ES FALSO, EL JUGADOR PUED MOVERSE
 			if(colisionOn == false) {
@@ -222,6 +242,8 @@ public class Jugador extends Entidad{
 			break;
 		}
 		
-		g2.drawImage(imagen, camaraX, camaraY, pj.tamPantalla, pj.tamPantalla, null);
+		
+		
+		g2.drawImage(imagen, camaraX, camaraY, null);
 	}
 }

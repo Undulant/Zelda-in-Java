@@ -9,124 +9,112 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import main.PanelJuego;
+import main.UtilityTool;
 
 public class AdministradoTile {
 	int juego;
 	String mensajes;
 	PanelJuego pj;
 	public Tile[] tile;
-	public int numTileMap[][];
+	public int numTileMap[][][]; 
 	
 	public AdministradoTile(PanelJuego pj) {
 		
 		this.pj = pj;
 		
-		tile = new Tile[25];
-		numTileMap = new int[pj.maxColMundo][pj.maxFilMundo];
+		tile = new Tile[49];
+		numTileMap = new int[pj.maxMap][pj.maxColMundo][pj.maxFilMundo];
 		
 		getImagenTile();
-		cargaMapa("/maps/Prueba_Mundo.txt");
+		cargaMapa("/maps/Prueba_Mundo.txt", 0);
+		cargaMapa("/maps/Mapa_Camino.txt", 1);
+		cargaMapa("/maps/Mapa_Bosque.txt", 2);
+		cargaMapa("/maps/Mapa_Boss.txt", 3);
 	}
 	
 	public void getImagenTile() {
 		
-		try {
 			
-			tile[0] = new Tile();
-			tile[0].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/PISO 2.png"));
+			setup(0, "PISO 2", false);
+			setup(1, "PISO 1", false);
+			setup(2, "CASA LINK ABAJO IZQUIERDA", true);
+			setup(3, "CASA LINK ABAJO CENTRO", true);
+			setup(4, "CASA LINK ABAJO DERECHApng", true);
+			setup(5, "CASA LINK MEDIO IZQUIERDA", true);
+			setup(6, "CASA LINK MEDIO CENTROpng", true);
+			setup(7, "CASA LINK MEDIO DERECHApng", true);
+			setup(8, "CASA LINK ARRIBA IZQUIERDA", true);
+			setup(9, "CASA LINK ARRIBA CENTROpng", true);
+			setup(10, "CASA LINK ARRIBA DERECHA", true);
+			setup(11, "CAMINO 1", false);
+			setup(12, "CAMINO 3", false);
+			setup(13, "Arbol_Left_Abajo", true);
+			setup(14, "Arbol_Right_Abajo", true);
+			setup(15, "Arbol_Left_Arriba", true);
+			setup(16, "Arbol_Right_Arriba", true);
+			setup(17, "Arbusto", true);
+			setup(18, "Pared_Abajo", true);
+			setup(19, "Pared_Arriba", true);
+			setup(20, "CAMINO 8", false);
+			setup(21, "CAMINO 9", false);
+			setup(22, "W_Pasto", false);
+			setup(23, "A_Pasto", false);
+			setup(24, "S_Pasto", false);
+			setup(25, "D_Pasto", false);
+			setup(26, "Lago_26", true);
+			setup(27, "Lago_27", true);
+			setup(28, "Lago_28", false);
+			setup(29, "Lago_29", true);
+			setup(30, "Lago_30", true);
+			setup(31, "Lago_31", true);
+			setup(32, "Lago_32", false);
+			setup(33, "Lago_33", true);
+			setup(34, "Lago_34", true);
+			setup(35, "Lago_35", true);
+			setup(36, "Lago_36", false);
+			setup(37, "Lago_37", true);
+			setup(38, "CAMINO 10", false);
+			setup(39, "CAMINO 11", false);
+			setup(40, "CAMINO 5", false);
+			setup(41, "ARBUSTO IZQUIERDA", true);
+			setup(42, "ARBUSTO MEDIO", true);
+			setup(43, "ARBUSTO DERECHA", true);
+			setup(44, "ENEMIGO CANGREJO", true);
+			setup(45, "ENEMIGO CANGREJO2", true);
+			setup(46, "ENEMIGO COBRA", true);
+			setup(47, "ENEMIGO COBRA2", true);
+			setup(48, "Cofre", true);
+
 			
-			tile[1] = new Tile();
-			tile[1].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/PISO 1.png"));
-			
-			tile[2] = new Tile();
-			tile[2].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ABAJO IZQUIERDA.png"));
-			tile[2].colision = true;
-			
-			tile[3] = new Tile();
-			tile[3].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ABAJO CENTRO.png"));
-			tile[3].colision = true;
-			
-			tile[4] = new Tile();
-			tile[4].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ABAJO DERECHApng.png"));
-			tile[4].colision = true;
-			
-			tile[5] = new Tile();
-			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK MEDIO IZQUIERDA.png"));
-			tile[5].colision = true;
-			
-			tile[6] = new Tile();
-			tile[6].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK MEDIO CENTROpng.png"));
-			tile[6].colision = true;
-			
-			tile[7] = new Tile();
-			tile[7].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK MEDIO DERECHApng.png"));
-			tile[7].colision = true;
-			
-			tile[8] = new Tile();
-			tile[8].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ARRIBA IZQUIERDA.png"));
-			tile[8].colision = true;
-			
-			tile[9] = new Tile();
-			tile[9].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ARRIBA CENTROpng.png"));
-			tile[9].colision = true;
-			
-			tile[10] = new Tile();
-			tile[10].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CASA LINK ARRIBA DERECHA.png"));
-			tile[10].colision = true;
-			
-			tile[11] = new Tile();
-			tile[11].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 1.png"));
-			
-			tile[12] = new Tile();
-			tile[12].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 3.png"));
-			
-			tile[13] = new Tile();
-			tile[13].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Left_Abajo.png"));
-			tile[13].colision = true;
-			
-			tile[14] = new Tile();
-			tile[14].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Right_Abajo.png"));
-			tile[14].colision = true;
-			
-			tile[15] = new Tile();
-			tile[15].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Left_Arriba.png"));
-			tile[15].colision = true;
-			
-			tile[16] = new Tile();
-			tile[16].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbol_Right_Arriba.png"));
-			tile[16].colision = true;
-			
-			tile[17] = new Tile();
-			tile[17].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbusto.png"));
-			tile[17].colision = true;
-			
-			tile[18] = new Tile();
-			tile[18].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Abajo.png"));
-			tile[18].colision = true;
-			
-			tile[19] = new Tile();
-			tile[19].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Pared_Arriba.png"));
-			tile[19].colision = true;
-			
-			tile[20] = new Tile();
-			tile[20].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 8.png"));
-			
-			tile[21] = new Tile();
-			tile[21].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/CAMINO 9.png"));
-			
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
+	
 	}
 	
-	public void cargaMapa(String rutaArchivo) {
+	public void setup(int index, String imagenName, boolean colision) {
+		
+		UtilityTool uTool = new UtilityTool();
+		
+		try {
+			
+			tile[index] = new Tile();
+			tile[index].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/"+ imagenName +".png"));
+			tile[index].imagen = uTool.scaleImage(tile[index].imagen, pj.tamPantalla, pj.tamPantalla);
+			tile[index].colision = colision;
+			
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public void cargaMapa(String rutaArchivo, int map) {
 		
 		try {
 			//EXPORTA EL MAPA
-			InputStream map1 = getClass().getResourceAsStream(rutaArchivo);
+			InputStream is = getClass().getResourceAsStream(rutaArchivo);
 			//LEE EL MAPA
-			BufferedReader br = new BufferedReader(new InputStreamReader(map1));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			
 			int col = 0;
 			int fil = 0;
@@ -141,7 +129,7 @@ public class AdministradoTile {
 					
 					int num = Integer.parseInt(numeros[col]);
 					
-					numTileMap[col][fil] = num;
+					numTileMap[map][col][fil] = num;
 					col++;
 				}
 				if(col == pj.maxColMundo) {
@@ -168,21 +156,23 @@ public class AdministradoTile {
 
 		while(colMundo < pj.maxColMundo && filMundo < pj.maxFilMundo) {
 			
-			int numTile = numTileMap[colMundo][filMundo];
+			int numTile = numTileMap[pj.mapaActual][colMundo][filMundo];
 			
 			int mundoX = colMundo * pj.tamPantalla;
 			int mundoY = filMundo * pj.tamPantalla;
 			int camaraX = mundoX - pj.jugador.mundoX + pj.jugador.camaraX;
 			int camaraY = mundoY - pj.jugador.mundoY + pj.jugador.camaraY;
 			
+
 			if(mundoX + pj.tamPantalla > pj.jugador.mundoX - pj.jugador.camaraX &&
 			   mundoX - pj.tamPantalla < pj.jugador.mundoX + pj.jugador.camaraX &&
 			   mundoY + pj.tamPantalla > pj.jugador.mundoY - pj.jugador.camaraY &&
 			   mundoY - pj.tamPantalla < pj.jugador.mundoY + pj.jugador.camaraY) {
 			
-			g2.drawImage(tile[numTile].imagen, camaraX, camaraY, pj.tamPantalla, pj.tamPantalla, null);
+			g2.drawImage(tile[numTile].imagen, camaraX, camaraY, null);
 			
 			}
+			
 			
 			colMundo++;
 			

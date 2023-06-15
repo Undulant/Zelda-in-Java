@@ -27,32 +27,32 @@ public class AdministradorColision {
 		switch(entidad.direccion) {
 		case "arriba":
 			entidadTopFila = (entidadTopMundoY - entidad.velocidad)/pj.tamPantalla;
-			tileNum1 = pj.tileM.numTileMap[entidadLeftCol][entidadTopFila];
-			tileNum2 = pj.tileM.numTileMap[entidadRightCol][entidadTopFila];
+			tileNum1 = pj.tileM.numTileMap[pj.mapaActual][entidadLeftCol][entidadTopFila];
+			tileNum2 = pj.tileM.numTileMap[pj.mapaActual][entidadRightCol][entidadTopFila];
 			if(pj.tileM.tile[tileNum1].colision == true || pj.tileM.tile[tileNum2].colision == true) {
 				entidad.colisionOn = true;
 			}
 			break;
 		case "abajo":
 			entidadBottomFila = (entidadBottomMundoY + entidad.velocidad)/pj.tamPantalla;
-			tileNum1 = pj.tileM.numTileMap[entidadLeftCol][entidadBottomFila];
-			tileNum2 = pj.tileM.numTileMap[entidadRightCol][entidadBottomFila];
+			tileNum1 = pj.tileM.numTileMap[pj.mapaActual][entidadLeftCol][entidadBottomFila];
+			tileNum2 = pj.tileM.numTileMap[pj.mapaActual][entidadRightCol][entidadBottomFila];
 			if(pj.tileM.tile[tileNum1].colision == true || pj.tileM.tile[tileNum2].colision == true) {
 				entidad.colisionOn = true;
 			}
 			break;
 		case "izquierda":
 			entidadLeftCol = (entidadLeftMundoX - entidad.velocidad)/pj.tamPantalla;
-			tileNum1 = pj.tileM.numTileMap[entidadLeftCol][entidadTopFila];
-			tileNum2 = pj.tileM.numTileMap[entidadLeftCol][entidadBottomFila];
+			tileNum1 = pj.tileM.numTileMap[pj.mapaActual][entidadLeftCol][entidadTopFila];
+			tileNum2 = pj.tileM.numTileMap[pj.mapaActual][entidadLeftCol][entidadBottomFila];
 			if(pj.tileM.tile[tileNum1].colision == true || pj.tileM.tile[tileNum2].colision == true) {
 				entidad.colisionOn = true;
 			}
 			break;
 		case "derecha":
 			entidadRightCol = (entidadRightMundoX + entidad.velocidad)/pj.tamPantalla;
-			tileNum1 = pj.tileM.numTileMap[entidadRightCol][entidadTopFila];
-			tileNum2 = pj.tileM.numTileMap[entidadRightCol][entidadBottomFila];
+			tileNum1 = pj.tileM.numTileMap[pj.mapaActual][entidadRightCol][entidadTopFila];
+			tileNum2 = pj.tileM.numTileMap[pj.mapaActual][entidadRightCol][entidadBottomFila];
 			if(pj.tileM.tile[tileNum1].colision == true || pj.tileM.tile[tileNum2].colision == true) {
 				entidad.colisionOn = true;
 			}

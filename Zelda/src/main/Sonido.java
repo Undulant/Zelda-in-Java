@@ -13,7 +13,7 @@ public class Sonido {
 	
 	public Sonido() {
 		
-		soundURL[0] = getClass().getResource("/sonido/Musica_Menu.wav");
+		soundURL[0] = getClass().getResource("/sonido/Musica_de_Fondo.wav");
 		soundURL[1] = getClass().getResource("/sonido/Musica_Mundo.wav");
 		soundURL[2] = getClass().getResource("/sonido/coin.wav");
 		soundURL[3] = getClass().getResource("/sonido/cursor.wav");

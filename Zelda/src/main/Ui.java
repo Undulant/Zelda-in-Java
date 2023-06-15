@@ -5,14 +5,19 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+
+import Objeto.OBJ_Corazon;
+import Objeto.SuperObjeto;
 
 public class Ui {
 	
 	PanelJuego pj;
 	Graphics2D g2;
 	Font webFont, interstellar;
+	BufferedImage corazonLleno, corazonMedio, corazonVacio;
 	public int flechaSeleccion = 0;
 	
 	public Ui(PanelJuego pj) {
@@ -33,6 +38,11 @@ public class Ui {
 			e.printStackTrace();
 		}
 		
+		SuperObjeto corazon = new OBJ_Corazon(pj);
+		corazonLleno = corazon.imagen;
+		corazonMedio = corazon.imagen2;
+		corazonVacio = corazon.imagen3; 
+		
 	}
 
 
@@ -46,6 +56,13 @@ public class Ui {
 		
 		if(pj.estadoJuego == pj.estadoMenu) {
 			dibujaMenu();
+		}
+		if(pj.estadoJuego == pj.estadoJugar) {
+			dibujaVidaJugador();
+		}
+		if(pj.estadoJuego == pj.estadoPausa) {
+			dibujaVidaJugador();
+			dibujarPantallaPausa();
 		}
 	}
 	
@@ -62,8 +79,39 @@ public class Ui {
 		}
 	}
 	
+	public void dibujaVidaJugador() {
+		
+		int x = pj.tamPantalla/2;
+		int y = pj.tamPantalla/2;
+		int i = 0;
+		
+		//DIBUJA LA VIDA MAXIMA
+		while(i < pj.jugador.vidaMax/2) {
+			
+			g2.drawImage(corazonVacio, x, y, null);
+			i++;
+			x += pj.tamPantalla;
+			
+		}
+		
+		x = pj.tamPantalla/2;
+		y = pj.tamPantalla/2;
+		i = 0;
+		
+		//DIBUJA LA VIDA ACTUAL
+		while(i < pj.jugador.vida) {
+			
+			g2.drawImage(corazonMedio, x, y, null);
+			i++;
+			if(i < pj.jugador.vida) {
+				g2.drawImage(corazonLleno, x, y, null);
+			}
+			i++;
+			x += pj.tamPantalla;
+		}
+		
+	}
 	
-
 	private void dibujaMenu() {
 		
 		//COLOR DE FONDO DEL MENU
@@ -120,8 +168,15 @@ public class Ui {
 		}
 	}
 	
-	
-
+	public void dibujarPantallaPausa() {
+		
+		String texto = "PAUSA";
+		int x = getXparaCentrarTexto(texto);
+		int y = pj.alturaPantalla/2;
+		
+		g2.drawString(texto, x, y);
+		
+	}
 
 	private int getXparaCentrarTexto(String text) {
 		
